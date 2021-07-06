@@ -1,0 +1,13 @@
+Spyder - Scietific PYthon Development EnviRonment
+sprawdzić wszystko w gui i opcjach
+
+libraries: Keras, Scikit, PyTorch, SciPy
+
+AI może mieć możliwość samodoskonalenia. To właśnie ML. Program może poprawiać się, widząc że poprawia błędy.
+
+Data Science - narzędzia matematyczne rozwijające ML. Pochodne, całki, entropia, prawdopodobieństwo, statystyka itd.
+
+Predictive Analytycs - dziedzina statystyki, zgadywanie przyszłości lub przeszłości korzystając z danych, tak by było maksymalnie trafnie.
+
+
+

@@ -1,0 +1,14 @@
+.vscode
+config
+lsp_paths
+plugins
+spyder.lock
+history_internal.py
+history.py
+langconfig
+onlinehelp
+pdb_history.sqlite
+__pycache__
+pylint.results
+template.py
+workingdir
