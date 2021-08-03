@@ -197,3 +197,104 @@ diamonds.drop(['x', 'y', 'z'], axis=1, inplace=True)
 diamonds.head()
 
 # One hot encoding
+diamonds = pd.get_dummies(diamonds, prefix_sep='_', drop_first=True)
+diamonds
+
+#-----------------------------------------------------------------------------
+# splitting data into features X, and labels y
+X = diamonds.drop('price', axis=1)
+y = diamonds['price']
+#
+# splitting data into train and test data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2,
+                                                    random_state=66)
+
+#-----------------------------------------------------------------------------
+# scaling values
+# change data to data with avg=0, std=1 in each column
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.fit_transform(X_test)
+
+#
+#-----------------------------------------------------------------------------
+# test different algorithms to get the data predictions
+scores = list()
+models = [
+    'Linear Regression', 'Lasso Regression', 'AdaBoost Regression', 
+    'Ridge Regression', 'RandomForest Regression', 'KNeighbors Regression']
+
+#-----------------------------------------------------------------------------
+# Linear regression
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+y_pred = lr.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print('Linear Regression R2: {0:.2f}'.format(r2))
+
+#
+# Lasso
+lasso = Lasso(normalize=True)
+lasso.fit(X_train, y_train)
+y_pred = lasso.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print(f'Lasso Regression R2: {r2:.2f}')
+
+#
+# AdaBoost classifier
+adaboost = AdaBoostRegressor(n_estimators=1000)
+adaboost.fit(X_train, y_train)
+y_pred = adaboost.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print(f'{models[2]} R2: {r2:.2f}')
+
+#
+# Ridge
+ridge = Ridge(normalize=True)
+ridge.fit(X_train, y_train)
+y_pred = ridge.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print(f'{models[3]} R2: {r2:.2f}')
+
+#
+# Random forest
+randomforest = RandomForestRegressor()
+randomforest.fit(X_train, y_train)
+y_pred = randomforest.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print(f'{models[4]} R2: {r2:.2f}')
+
+#
+# K-Neighbors
+kneighbours = KNeighborsRegressor()
+kneighbours.fit(X_train, y_train)
+y_pred = kneighbours.predict(X_test)
+r2 = r2_score(y_test, y_pred)
+
+scores.append(r2)
+print(f'{models[5]} R2: {r2:.2f}')
+
+#
+#-----------------------------------------------------------------------------
+ranking = pd.DataFrame({'Algorithms': models, 'R2-Scores': scores})
+ranking.sort_values(by='R2-Scores', ascending=False, inplace=True)
+ranking
+ranking.columns[::-1]
+
+sns.barplot(*ranking.columns[::-1], data=ranking)
+
+#
+# Conclusion
+# Best result was returned from the Random Forest Regression model.
+# Prediction was done with default hiper-parameters.
+# A parameter optimization may improve a r2 score result.

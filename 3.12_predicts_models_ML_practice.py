@@ -35,7 +35,7 @@ X['horsepower'] = X['horsepower'].astype('int')
 
 # or drop a NaN column
 X = X.drop('horsepower', axis='columns')
-y = auto['mpg']
+y = auto['mpg'][X.index]
 
 y.head()
 

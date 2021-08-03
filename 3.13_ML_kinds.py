@@ -5,8 +5,8 @@ Created on Sun Jun 20 12:51:05 2021
 @author: mattt
 """
 
-# One row in DB is called a row, but in ML it is a sample [próbka]
-# Columns in ML are called properties [własciwosci]
+# One row in DB == sample in ML [próbka]
+# Columns in ML are called properties [właściwości]
 # or attribute, feature [cecha]
 # A main column to predict is called target or label [etykieta]
 
@@ -24,7 +24,7 @@ Created on Sun Jun 20 12:51:05 2021
 #           attributes
 #       * anomaly detection [wykrywanie anomalii]
 #
-#   reinforement learning:
+#   reinforcement learning:
 #       reward and punishment
 #       if an algorithm can get information
 #           about its good or bad decision
@@ -58,6 +58,7 @@ df.shape
 
 coordinates = df.loc[:, ['longitude', 'latitude']]
 plt.scatter(df.loc[:, 'longitude'], df.loc[:, 'latitude'])
+coordinates
 
 # within cluster sum of squares
 WCSS = list()
@@ -87,9 +88,13 @@ h = 0.001  # accuracy
 x_min, x_max = coordinates['longitude'].min(), coordinates['longitude'].max()
 y_min, y_max = coordinates['latitude'].min(), coordinates['latitude'].max()
 # a matrix with all points in a chart
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+x_arange, y_arange = np.arange(x_min, x_max, h), np.arange(y_min, y_max, h)
+xx, yy = np.meshgrid(x_arange, y_arange)
 # a predictction result of xx and yy
-Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
+xx_ravel, yy_ravel = xx.ravel(), yy.ravel()
+c_ravelled = np.c_[xx_ravel, yy_ravel]
+Z = kmeans.predict(c_ravelled)
+
 
 # now we are ready to draw a chart
 plt.figure(1, figsize=(10, 4))

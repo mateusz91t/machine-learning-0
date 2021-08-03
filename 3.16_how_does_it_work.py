@@ -40,8 +40,8 @@ data1 = make_blobs(
     # n_features=2,  # what is it?
     centers=4,      # default=None
     # if bigger center box, we need bigger cluster_std
-    cluster_std=5,  # default=1, distances between clusters
-    center_box=(10, 100),  # default=(-10.0, 10.0); min and max
+    cluster_std=5,  # default=1, distances between clusters; lower == near
+    center_box=(0, 100),  # default=(-10.0, 10.0); min and max
     random_state=2  # default=None, if we want get the same result, set it
     )
 X, y = data1
@@ -83,7 +83,8 @@ clusters
 # it contains info about which sample belongs to which cluster
 labels = kmeans.labels_
 labels
-all(clusters == labels)  # wtf ?? the same?
+# the same because fit_predict(X) returns == kmeans.labels_
+all(clusters == labels)
 # Coordinates of cluster centers
 centroids = kmeans.cluster_centers_
 centroids
@@ -112,6 +113,7 @@ len(meshgrid[0])
 len(meshgrid[1])
 xv, yv = meshgrid
 len(xv)
+xv.shape
 xv
 # ravel(): sticks each column to end of first column. Returns 1 long column
 xv_raveled, yv_raveled = xv.ravel(), yv.ravel()
@@ -123,11 +125,11 @@ plt.plot(xv_raveled)
 c_np = np.c_[xv_raveled, yv_raveled]
 c_np
 len(c_np)
+len(c_np) == len(xv_raveled) == len(yv_raveled)
 
 
 # what is it?
 Z = kmeans.predict(c_np)
-xv.shape
 len(Z)
 Z
 Z = Z.reshape(xv.shape)

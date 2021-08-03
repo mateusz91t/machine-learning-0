@@ -126,5 +126,72 @@ len(linspace_array)
 linspace_array
 
 
-#------------------------------------------------------------------------
-# Preparing data to Machine Learning
+# przypomnienie
+
+# 1. Załaduj moduł numpy
+import numpy as np
+# 2. Utwórz w zmiennej a jednowymiarową tablicę z elementami od 0 do 19. Hint: Służy do tego metoda np.arange(...)
+a = np.arange(20)
+a
+# 3. Wyświetl kształt tej tablicy. Hint: służy do tego właściwość shape
+a.shape
+# 4. Wyświetl zerowy element tablicy. Wyświetl czwarty element tablicy. Hint: Korzystaj z [] i numeruj od 0
+a[0]
+a[4]
+# 5. Zmień kształt tablicy na 2x10. Wynik przekształcenia zapisz w a. Potem ponownie sprawdź kształt i wyświetl zawartość tablicy. Hint: Skorzystaj z metody reshape(...)
+a = a.reshape(2, 10)
+a
+a[0]
+# 6.  Wyświetl element zerowy z przekształconej w poprzednim kroku tablicy. Czy jest to ten sam element co poprzednio?
+
+# 7. (Uwaga - tu będzie błąd, ale na błędach człowiek się uczy, więc to dobrze). Wyświetl czwarty element z tablicy a
+
+# 8. A teraz zróbmy to poprawnie. Z tablicy a wyświetl czwarty element znajdujący się w zerowym wierszu. Hint: Musisz dwa razy skorzystać z [][]
+a[0][4]
+# 9. Zmień kształt tablicy a na 2x5x2
+a = a.reshape(2,5,2)
+# 10. Potem ponownie sprawdź kształt i wyświetl zawartość tablicy. Hint: hahah - poszukaj odpowiedniego hinta powyżej :)
+a.shape
+# 11. Wyświetl z tablicy a:
+#
+#     zerowy wiersz
+a[0]
+#     czwartą kolumnę z zerowego wiersza
+a[0, 4], a[0][4]
+#     drugi element z czwartego wiersza w zerowym wierszu
+a[0][3][1]
+# 12. Tworząc tablicę, możesz od razu definiować jej kształt.
+# Utwórz tablicę b korzystając z parametrów przekazywanych do metody array
+# lub wywołując odpowiednie metody dla już istniejącej tablicy,
+# tak aby zawierała ona elementy parzyste od 0 do 40 o kształcie 4x5
+b = np.arange(40, step=2).reshape(4, 5)
+b
+# 13. Polecenie
+#
+a_python_list =  [2**x for x in range(10)]
+a_python_list
+#
+# tworzy standardową pythonową listę dziesięciu kolejnych potęg dwójki. W oparciu o tą listę utwórz obiekt array c
+c = np.array(a_python_list)
+c
+# 14. To może się wydawać trochę dziwne, ale czasami w uczeniu maszynowym potrzebne są bardzo specyficzne obiekty array. W tym zadaniu utworzysz takie "dziwaczne" tablice
+#
+#     Utwórz tablicę zero_array składającą się z 10 zer. Hint: Skorzystaj z metody zeros
+#
+#     Utwórz tablicę one_array składającą się z 10 jedynek. Hint: Skorzystaj z metody ones
+#
+#     Utwórz tablicę empty_array składającą się ze 100  byle-jakich-liczb. Hint skorzystaj z metody empty
+#     Ta metoda tworzy tablicę, która zawiera to, co akurat było w pamięci. Wielokrotne uruchamianie w/w polecenia może dawać różne wyniki, ale to nie jest jakiś świetny sposób na generowanie liczb losowych
+#
+#     Utwórz tablicę lucky_array o wymiarach 5x5 składającą się z samych trzynastek. Hint: Skorzystaj z metody full
+#
+#     Utwórz tablicę diagonal_array o wymiarach 5x5, która na przekątnej ma jedynki, a pozostałe wartości to zera. Hint: Skorzystaj z metody eye
+#
+#     Utwórz tablicę random_array składającą się z 10 losowych liczb. Hint: Skorzystaj z metody np.random.random
+#
+#     Utwórz tablicę linspace_array zawierającą 5 elementów,
+# która jako zerową wartość ma 100, jako ostatnią ma wartość 200,
+# i wszystkie elementy różnią się od siebie o tyle samo.
+# Hint: Skorzystaj z metody linspace
+l_a = np.linspace(100, 200, 5, dtype=int)
+l_a

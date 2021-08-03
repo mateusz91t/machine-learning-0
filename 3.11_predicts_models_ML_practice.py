@@ -6,7 +6,7 @@ Created on Sat Jun 19 21:12:22 2021
 """
 
 # Linear Regression: an algorithm that allows to predict continuous values [wartości ciągłe]
-# Continuous values: real numbers [liczby rzeczywiste], e.g. temp, speed
+# Continuous values: real numbers [liczby rzeczywiste], e.g. temperature, speed
 # Discrete values[wartoci dyskretne]: categories, e.g. Male/Female, Country
 
 import pandas as pd
